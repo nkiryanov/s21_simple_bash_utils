@@ -5,7 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "../src/s21_cat_internal.h"
+#include "../s21_cat_internal.h"
 
 static FILE *tmp_file_in = NULL;
 static FILE *tmp_file_out = NULL;

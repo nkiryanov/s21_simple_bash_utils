@@ -1,7 +1,7 @@
 #include <check.h>
 #include <string.h>
 
-#include "../src/s21_common.h"
+#include "../s21_common.h"
 
 START_TEST(test_filename_without_path) {
     char *filename = "filename_without_path.txt";

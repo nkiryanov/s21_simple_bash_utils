@@ -1,6 +1,6 @@
 #include <check.h>
 
-#include "../src/s21_cat_internal.h"
+#include "../s21_cat_internal.h"
 
 START_TEST(test_num_non_blank_takes_precedence) {
     int flags = 0;

@@ -1,7 +1,7 @@
 #include <check.h>
 #include <stdlib.h>
 
-#include "../src/s21_cat_internal.h"
+#include "../s21_cat_internal.h"
 
 START_TEST(test_one_option) {
     // Normal behaviour. Only one -n flag is used.

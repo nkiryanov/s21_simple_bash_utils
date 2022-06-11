@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <errno.h>
 
-#include "../src/s21_common.h"
+#include "../s21_common.h"
 
 static char buffer[100];
 

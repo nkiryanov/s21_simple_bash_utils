@@ -1,5 +1,5 @@
-#ifndef SRC_GREP_SRC_S21_GREP_INTERNAL_H_
-#define SRC_GREP_SRC_S21_GREP_INTERNAL_H_
+#ifndef SRC_GREP_S21_GREP_INTERNAL_H_
+#define SRC_GREP_S21_GREP_INTERNAL_H_
 
 #include <regex.h>
 #include <stdio.h>
@@ -49,4 +49,4 @@ void _match_out_general(grep_opts *opts, regex_t *preg, char *file_in_name,
 void _match_out_string_match(grep_opts *opts, regex_t *preg, char *filename,
                              FILE *file_in);
 
-#endif  // SRC_GREP_SRC_S21_GREP_INTERNAL_H_
+#endif  // SRC_GREP_S21_GREP_INTERNAL_H_

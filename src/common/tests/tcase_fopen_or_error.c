@@ -2,7 +2,7 @@
 #include <errno.h>
 #include <stddef.h>
 
-#include "../src/s21_common.h"
+#include "../s21_common.h"
 
 FILE *file;
 int result_code;

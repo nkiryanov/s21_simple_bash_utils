@@ -46,7 +46,7 @@ def check_leaks_and_errors(s21_cmd, leaks, errors):
     no_leaks_pattern = "All heap blocks were freed -- no leaks are possible"
     no_errors_pattern = "ERROR SUMMARY: 0 errors"
 
-    with open(LEAK_LOG, "w") as log:
+    with open(LEAK_LOG, "w+") as log:
         subprocess.run(
             [
                 "valgrind",
@@ -86,7 +86,7 @@ def main():
     errors = 0
 
     test_files = [file for file in os.listdir(TESTS_DATA)]
-    flags = ("-v", "-c", "-l", "-n", "-h", "-s", "-o", "-i")
+    flags = ("", "-v", "-c", "-l", "-n", "-h", "-s", "-o", "-i")
     patterns = (".", "b", "include", "[0-9]", "-e .", f"-f {FILE_PATTERNS}")
 
     for file in test_files:

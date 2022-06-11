@@ -21,9 +21,9 @@ CFLAGS += 				-Wall -Werror -Wextra
 LDFLAGS +=				-Wall -Werror -Wextra
 LDLIBS +=
 
-SRC_DIR :=				./src
-OBJ_DIR :=				./build
-T_SRC_DIR :=			./tests
+SRC_DIR :=				.
+OBJ_DIR :=				$(SRC_DIR)/build
+T_SRC_DIR :=			$(SRC_DIR)/tests
 T_OBJ_DIR :=			$(OBJ_DIR)/tests
 
 SRC :=					$(wildcard $(SRC_DIR)/*.c)

@@ -1,6 +1,6 @@
 #include <check.h>
 
-#include "../src/s21_grep_internal.h"
+#include "../s21_grep_internal.h"
 #define argc ((sizeof argv) / sizeof(char *))
 
 static grep_opts opts;

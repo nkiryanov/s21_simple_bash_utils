@@ -1,5 +1,5 @@
-#ifndef SRC_CAT_SRC_S21_CAT_INTERNAL_H_
-#define SRC_CAT_SRC_S21_CAT_INTERNAL_H_
+#ifndef SRC_CAT_S21_CAT_INTERNAL_H_
+#define SRC_CAT_S21_CAT_INTERNAL_H_
 
 #include <stdio.h>
 
@@ -17,6 +17,6 @@ enum CAT_FLAGS_BIT {
 int _set_options(int argc, char *argv[], int *flags, int *next);
 int _turn_off_incompatible_flags(int flags);
 void _update_cache(int c, char cache[2]);
-void _process_and_output(FILE *file_in, FILE* file_out, int flags);
+void _process_and_output(FILE *file_in, FILE *file_out, int flags);
 
-#endif  // SRC_CAT_SRC_S21_CAT_INTERNAL_H_
+#endif  // SRC_CAT_S21_CAT_INTERNAL_H_

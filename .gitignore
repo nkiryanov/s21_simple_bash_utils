@@ -34,12 +34,30 @@
 *.i*86
 *.x86_64
 *.hex
+s21_cat
+s21_grep
 
 # Debug files
 *.dSYM/
 *.su
 *.idb
 *.pdb
+*.out
+*.gcda
+*.gcno
+*_debug
+*_coverage
+tests_runner
+tmp_test.c
+log.txt
+
+# Coverage report data
+*_coverage
+coverage/
+coverage.txt
+
+# Settings
+.vscode/
 
 # Kernel Module Compile Results
 *.mod*
@@ -49,3 +67,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# macOS System files
+.DS_Store

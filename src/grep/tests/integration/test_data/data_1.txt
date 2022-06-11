@@ -1,0 +1,27 @@
+DEBUG =					NO
+COVERAGE =				NO
+ASAN =					NO
+SUFFIX =
+POSSIBLE_SUFFIXES =		_debug _coverage _asan
+
+ifeq ($(DEBUG), YES)
+	SUFFIX = 			_debug
+	CFLAGS += 			-g
+endif
+
+ifeq ($(ASAN), YES)
+	CFLAGS += 			-fsanitize=address -g
+	LDFLAGS += 			-fsanitize=address
+	LDLIBS += 			-static-libasan
+	SUFFIX =			_asan
+endif
+
+CC := 					gcc
+CFLAGS += 				-Wall -Werror -Wextra
+LDFLAGS +=				-Wall -Werror -Wextra
+LDLIBS +=
+
+SRC_DIR :=				./src
+OBJ_DIR :=				./build
+T_SRC_DIR :=			./tests
+T_OBJ_DIR :=			$(OBJ_DIR)/tests

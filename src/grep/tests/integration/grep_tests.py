@@ -17,13 +17,13 @@ STD_TMP = INTEGRATION_TESTS_DIR / "std_grep_tmp.txt"
 LEAK_LOG = "leak_log.log"
 
 
-def check_with_std(s21_grep_cmd, std_grep_cmd, success, failed):
-    # Check result with standard implementation
+def compare_with_system_implementation(s21_cmd, std_cmd, success, failed):
+    # Compare the result of the self written implementations with system one
 
-    os.system(f"{s21_grep_cmd} > {S21_TMP}")
-    os.system(f"{std_grep_cmd} > {STD_TMP}")
+    os.system(f"{s21_cmd} > {S21_TMP}")
+    os.system(f"{std_cmd} > {STD_TMP}")
 
-    file_diff = subprocess.run(
+    diff = subprocess.run(
         [
             "diff",
             "-q",
@@ -32,17 +32,17 @@ def check_with_std(s21_grep_cmd, std_grep_cmd, success, failed):
         ]
     )
 
-    if file_diff.returncode == 0:
+    if diff.returncode == 0:
         success += 1
     else:
         failed += 1
-        print(f"Разные результаты для {s21_grep_cmd}")
+        print(f"Разные результаты для {s21_cmd}")
 
     return success, failed
 
 
-def check_leaks_and_errors(s21_grep_cmd, leaks, errors):
-    # Check leaks and errors with valgrind
+def check_leaks_and_errors(s21_cmd, leaks, errors):
+    # Run the self implemented function with valgring and look for leaks/error
     no_leaks_pattern = "All heap blocks were freed -- no leaks are possible"
     no_errors_pattern = "ERROR SUMMARY: 0 errors"
 
@@ -51,7 +51,8 @@ def check_leaks_and_errors(s21_grep_cmd, leaks, errors):
             [
                 "valgrind",
                 "--leak-check=summary",
-                "../../s21_grep",
+                S21_GREP,
+                ">",
                 "/dev/null",
             ],
             stderr=log,
@@ -63,7 +64,7 @@ def check_leaks_and_errors(s21_grep_cmd, leaks, errors):
         stderr=subprocess.DEVNULL,
     )
     if is_leaks.returncode:
-        print(f"Утечки при выполнении {s21_grep_cmd}")
+        print(f"Утечки при выполнении {s21_cmd}")
         leaks += is_leaks.returncode
 
     is_errors = subprocess.run(
@@ -72,7 +73,7 @@ def check_leaks_and_errors(s21_grep_cmd, leaks, errors):
         stderr=subprocess.DEVNULL,
     )
     if is_errors.returncode:
-        print(f"Ошибки при выполнении {s21_grep_cmd}")
+        print(f"Ошибки при выполнении {s21_cmd}")
         leaks += is_leaks.returncode
 
     return leaks, errors
@@ -96,13 +97,15 @@ def main():
                 for pattern in patterns:
                     file = TESTS_DATA / file
                     grep_args = f"{flag_1} {flag_2} {pattern}"
-                    s21_grep_cmd = f"{S21_GREP} {grep_args} {file}"
-                    std_grep_cmd = f"{STD_GREP} {grep_args} {file}"
+                    s21_cmd = f"{S21_GREP} {grep_args} {file}"
+                    std_cmd = f"{STD_GREP} {grep_args} {file}"
 
-                    success, failed = check_with_std(
-                        s21_grep_cmd, std_grep_cmd, success, failed
+                    success, failed = compare_with_system_implementation(
+                        s21_cmd, std_cmd, success, failed
                     )
-                    leaks, errors = check_leaks_and_errors(s21_grep_cmd, leaks, errors)
+                    leaks, errors = check_leaks_and_errors(
+                        s21_cmd, leaks, errors
+                    )
 
     os.system(f"rm {S21_TMP} {STD_TMP} {LEAK_LOG}")
 

@@ -1,0 +1,16 @@
+Part_1.CAT
+- The cat program builds successfully
+- Tests run successfully
+- Tests include all variants of flags (including GNU versions) and input values to them
+- The program is developed in C language of C11 standard using gcc compiler
+- The code of the program is in the src folder
+- The program is built with Makefile with target s21_cat
+- The program works
+- The program is developed according to the principles of structured programming: the program is decomposed into files and functions, top-down design is used. Buisness logic and io-tasks are separated into different functions
+- There is no code duplication
+- There is one input and one output in all program structures (functions and loops). This excludes the cases when multiple outputs are allowed at the beginning of functions to handle erroneous situations
+- No goto statement is used
+- Integration tests fully cover the programs comparing the results of the developed programs with the standard ones provided by OS
+- The common code of the utilities is placed in a special module that is used by all programs
+- The code is decomposed
+

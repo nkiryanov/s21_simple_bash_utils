@@ -61,7 +61,15 @@ The integration tests is written as python script (look for tests/integration di
    ```
       make tests
    ```
-2. Integration tests
+2. Integration tests (should be run in Docker or ubuntu linux)
+   - Start docker image
+   ```bash
+      docker-compose up -d
+   ```
+   - Login to docker image
+   ```bash
+      docker-compose exec tests fish
+   ```
    - Change directory to utililiry subdirectory. e.g. grep
    ```bash
       cd src/grep/tests/integration
